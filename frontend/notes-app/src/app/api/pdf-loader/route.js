@@ -7,11 +7,11 @@ export async function GET(req) {
     const res = await fetch(pdfurl);
     const data = await res.blob();
     const loader = new WebPDFLoader(data);
-    const docs = await loader.load();
+    const doc = await loader.load();
 
     let pdfText = '';
-    docs.forEach((docs)=>{
-        pdfText = pdfText + docs.pageContent + " ";
+    docs.forEach((doc)=>{
+        pdfText = pdfText + doc.pageContent + " ";
     })
 
     const splitter = new RecursiveCharacterTextSplitter({
@@ -21,8 +21,8 @@ export async function GET(req) {
     const output = await splitter.createDocuments([pdfText]);
 
     let splitterList = [];
-    output.forEach((docs)=>{
-        splitterList.push(docs.pageContent)
+    output.forEach((doc)=>{
+        splitterList.push(doc.pageContent)
     })
 
 
