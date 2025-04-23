@@ -15,8 +15,8 @@ export async function GET(req) {
     })
 
     const splitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 10,
-        chunkOverlap: 1,
+        chunkSize: 100,
+        chunkOverlap: 20,
     });
     const output = await splitter.createDocuments([pdfText]);
 

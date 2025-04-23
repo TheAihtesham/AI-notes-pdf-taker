@@ -3,7 +3,6 @@ const multer = require('multer');
 const { getPdfById, uploadpdf, allPDFs } = require('../controller/pdfcontroller');
 const fs = require('fs');
 const path = require('path');
-
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, '../uploads');

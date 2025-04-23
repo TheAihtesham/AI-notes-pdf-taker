@@ -20,11 +20,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/pdf/[id]/page.js"
-    ],
-    "/api/pdf-loader/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/pdf-loader/route.js"
     ]
   }
 }
