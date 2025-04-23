@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+html, body{
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Custom size for H1 */
+.heading-custom[data-level="1"] {
+  font-size: 2.5rem; /* Example: 40px */
+  font-weight: bold;
+}
+
+/* Custom size for H2 */
+.heading-custom[data-level="2"] {
+  font-size: 2rem; /* Example: 32px */
+  font-weight: bold;
+}
+
+/* Custom size for H3 */
+.heading-custom[data-level="3"] {
+  font-size: 1.5rem; /* Example: 24px */
+  font-weight: bold;
+}
