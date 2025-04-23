@@ -10,7 +10,7 @@ export async function GET(req) {
     const doc = await loader.load();
 
     let pdfText = '';
-    docs.forEach((doc)=>{
+    doc.forEach((doc)=>{
         pdfText = pdfText + doc.pageContent + " ";
     })
 
