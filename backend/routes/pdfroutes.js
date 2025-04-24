@@ -1,8 +1,10 @@
 const express = require('express');
 const multer = require('multer');
-const { getPdfById, uploadpdf, allPDFs } = require('../controller/pdfcontroller');
+const { getPdfById, uploadpdf, allPDFs, askQuestionFromPdf } = require('../controller/pdfcontroller');
+
 const fs = require('fs');
 const path = require('path');
+
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, '../uploads');
@@ -32,11 +34,14 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
     storage,
     fileFilter,
-    limits: { fileSize: 10 * 1024 * 1024 }, // Limit file size to 10MB
+    limits: { fileSize: 10 * 1024 * 1024 }, 
 });
+
+
 
 router.post('/uploadpdf', upload.single('pdf'), uploadpdf);
 router.get('/', allPDFs);
 router.get('/:id', getPdfById);
+router.post('/ask/:id', askQuestionFromPdf);
 
 module.exports = router;
