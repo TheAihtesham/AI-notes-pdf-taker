@@ -24,8 +24,8 @@ const pdfSchema = new mongoose.Schema({
     default: Date.now
   },
   chunks: {
-    type: [String], // Array of text chunks
-    default: []     // Defaults to empty array
+    type: [String], 
+    default: []    
   }
 }, { timestamps: true });
 

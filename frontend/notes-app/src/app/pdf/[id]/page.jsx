@@ -1,6 +1,5 @@
 'use client';
 
-import WorkspaceComponents from '../../workspaceheader/page';
 import PdfViewer from '../../pdfviewer/page';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -53,18 +52,15 @@ const Workspace = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      {/* Header */}
-      <div className="border-b shadow-sm">
-       
-      </div>
 
-      {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="border-b shadow-sm">
+      </div>
+      <div className="sm:flex flex-1 sm:overflow-hidden">
         {/* Notes or Sidebar Area */}
-        <div className="w-1/2 p-2 overflow-y-auto border-r border-gray-200 bg-white hide-scrollbar">
+        <div className="sm:w-1/2 p-4 overflow-y-auto border-r border-gray-200 bg-white hide-scrollbar">
           <h2 className="text-xl font-semibold mb-4">Notes / Editor</h2>
           <div className="text-gray-600">
-            <Tiptap />
+            <Tiptap pdfId={id} />
           </div>
         </div>
 
