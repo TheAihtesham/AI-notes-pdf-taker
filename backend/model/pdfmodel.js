@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const pdfSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'User',  required: false
+  },
   filename: {
     type: String,
     required: true
@@ -24,8 +27,8 @@ const pdfSchema = new mongoose.Schema({
     default: Date.now
   },
   chunks: {
-    type: [String], 
-    default: []    
+    type: [String],
+    default: []
   }
 }, { timestamps: true });
 

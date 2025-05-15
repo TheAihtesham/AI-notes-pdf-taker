@@ -1,9 +1,11 @@
 const express = require('express');
 const multer = require('multer');
 const { getPdfById, uploadpdf, allPDFs, askQuestionFromPdf } = require('../controller/pdfcontroller');
-
 const fs = require('fs');
 const path = require('path');
+const auth = require('../middleware/authmiddleware');
+const { login, register } = require('../controller/authcontroller');
+const { saveNote, getNote } = require('../controller/notecontroller');
 
 const router = express.Router();
 
@@ -38,10 +40,13 @@ const upload = multer({
 });
 
 
-
-router.post('/uploadpdf', upload.single('pdf'), uploadpdf);
-router.get('/', allPDFs);
-router.get('/:id', getPdfById);
-router.post('/ask/:id', askQuestionFromPdf);
+router.post('/api/login', login)
+router.post('/api/register', register)
+router.post('/uploadpdf', upload.single('pdf'),auth, uploadpdf);
+router.get('/',auth, allPDFs);
+router.get('/:id',auth, getPdfById);
+router.post('/ask/:id',auth, askQuestionFromPdf);
+router.post('/note/save/:id',auth, saveNote);
+router.get('/note/get/:id',auth, getNote);
 
 module.exports = router;
