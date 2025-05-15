@@ -22,16 +22,13 @@ export default function HeroSection() {
 
  
         <Link
-          href="/dashboard"
+          href="/login"
           className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl text-lg shadow-md transition"
         >
           Get Started
         </Link>
 
-        <ul className="mt-8 text-gray-500 text-sm space-y-1">
-          <li>✅ Smart summarization</li>
-          <li>✅ Instant Q&A from your documents</li>
-        </ul>
+        
       </motion.div>
     </section>
   );

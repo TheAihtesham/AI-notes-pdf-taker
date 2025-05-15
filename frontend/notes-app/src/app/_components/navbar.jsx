@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const NavbarContent = () => {
@@ -6,7 +7,6 @@ const NavbarContent = () => {
             <div className="text-xl font-bold text-blue-600">PDFSense</div>
             <div className="space-x-6 text-sm text-gray-700">
                 <a href="#how-to-use" className="hover:text-blue-600">How to Use</a>
-                <a href="#pricing" className="hover:text-blue-600">Pricing</a>
                 <a href="#faq" className="hover:text-blue-600">FAQs</a>
             </div>
         </nav>

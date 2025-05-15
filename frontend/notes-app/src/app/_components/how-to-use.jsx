@@ -12,12 +12,12 @@ const steps = [
     description: "View the content of your uploaded PDF using our smooth built-in previewer.",
   },
   {
-    step: "3. Ask Questions",
-    description: "Type any question about the PDF content. Our AI will scan and provide accurate answers instantly.",
+    step: "3. Select a Text",
+    description: "Select the text which you want to get an answer",
   },
   {
-    step: "4. Get a Summary",
-    description: "Need a quick overview? Just click the 'Summarize' button to generate a concise summary.",
+    step: "4. Ask Questions",
+    description: "Our AI will scan and provide accurate answers instantly.",
   },
 
 ];

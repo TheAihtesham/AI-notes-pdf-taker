@@ -1,16 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { UploadCloud, Loader2 } from 'lucide-react';
 import GetPdfList from '../sidebar/page';
 import { toast } from 'sonner';
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function UploadPDF() {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "loading") return;
+
+    if (!session) {
+      const trialStart = localStorage.getItem('pdfsync_trial_start');
+
+      if (!trialStart) {
+        router.push('/login');
+      }
+
+    }
+  }, [session, status, router]);
+
+  if (status === "loading") {
+    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  }
 
   const handleUpload = async () => {
     if (!file) {
@@ -24,6 +45,9 @@ export default function UploadPDF() {
     try {
       setIsLoading(true);
       const res = await fetch('http://localhost:5000/pdf/uploadpdf', {
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`
+        },
         method: 'POST',
         body: formData,
       });
@@ -34,7 +58,9 @@ export default function UploadPDF() {
         toast.success(`✅ Uploaded: ${data.pdf.filename}`);
         setFile(null);
         setRefreshTrigger((prev) => prev + 1);
-      } else {
+
+      }
+      else {
         throw new Error(data.error || 'Upload failed');
       }
     } catch (error) {
@@ -44,13 +70,27 @@ export default function UploadPDF() {
     }
   };
 
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/" });
+  };
+
   return (
     <div>
-      <div className='text-3xl font-bold py-4 px-4'>Workspace</div>
+      <div className="flex justify-between items-center py-4 mb-2 px-4 shadow-sm">
+        <div className="text-3xl font-bold">Workspace</div>
+        <Button
+          onClick={handleLogout}
+          variant="outline"
+          className="transition duration-200 hover:bg-red-100 hover:text-red-600 hover:border-red-300"
+        >
+          Logout
+        </Button>
+      </div>
+
       <div className='sm:flex h-[90vh] sm:px-4'>
-        <div className='uploadyourPdf w-full sm:w-[25%] rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+        <div className='uploadyourPdf w-full sm:w-[30%] rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
           <div className="w-full px-4 sm:px-6 md:px-8 max-w-lg mx-auto mt-10">
-            <div className="bg-white rounded-xl p-6 sm:p-8 space-y-5">
+            <div className="bg-white rounded-xl p-6 sm:p-2 space-y-5">
               <h2 className="text-2xl sm:text-3xl font-semibold text-center">
                 Upload PDF
               </h2>
@@ -65,7 +105,7 @@ export default function UploadPDF() {
               <Button
                 onClick={handleUpload}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="w-full flex items-center justify-center gap-2 text-sm sm:text-base transition duration-200 hover:bg-blue-100 hover:text-blue-700"
               >
                 {isLoading ? (
                   <>
@@ -80,6 +120,7 @@ export default function UploadPDF() {
             </div>
           </div>
         </div>
+
         <div className='uploadedPdf w-full sm:w-[70%]'>
           <GetPdfList refreshTrigger={refreshTrigger} />
         </div>

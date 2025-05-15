@@ -9,15 +9,23 @@ html, body{
   display: none;
 }
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
 .tiptap {
   :first-child {
     margin-top: 0;
   }
 
-  /* List styles */
+
   ul, 
   ol {
     padding: 0 1rem;
@@ -29,7 +37,7 @@ html, body{
     }
   }
 
-  /* Heading styles */
+
   h1, 
   h2, 
   h3, 
@@ -65,7 +73,7 @@ html, body{
     font-size: 1rem; 
   }
 
-  /* Code and preformatted text styles */
+
   code {
     background-color: var(--purple-light);
     border-radius: 0.4rem;
@@ -102,7 +110,7 @@ html, body{
     margin: 2rem 0;
   }
     
-  /* Placeholder (at the top) */
+  
   p.is-editor-empty:first-child::before {
     color: var(--gray-4);
     content: attr(data-placeholder);
