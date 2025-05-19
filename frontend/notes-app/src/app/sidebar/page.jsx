@@ -15,7 +15,7 @@ const GetPdfList = ({ refreshTrigger }) => {
   useEffect(() => {
     const fetchPdfList = async () => {
       try {
-        const res = await fetch('http://localhost:5000/pdf',{
+        const res = await fetch('https://ai-notes-pdf-taker.onrender.com/pdf',{
           headers: session?.accessToken ?{  
             Authorization: `Bearer ${session?.accessToken}`
           } : {},

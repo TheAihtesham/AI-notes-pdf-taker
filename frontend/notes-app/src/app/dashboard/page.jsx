@@ -44,7 +44,7 @@ export default function UploadPDF() {
 
     try {
       setIsLoading(true);
-      const res = await fetch('http://localhost:5000/pdf/uploadpdf', {
+      const res = await fetch('https://ai-notes-pdf-taker.onrender.com/pdf/uploadpdf', {
         headers: {
           Authorization: `Bearer ${session?.accessToken}`
         },

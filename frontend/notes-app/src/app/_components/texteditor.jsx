@@ -108,7 +108,7 @@ const Tiptap = ({ pdfId, userId }) => {
     }
   
     try {
-      const askAi = await fetch(`http://localhost:5000/pdf/ask/${pdfId}`, {
+      const askAi = await fetch(`https://ai-notes-pdf-taker.onrender.com/pdf/ask/${pdfId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

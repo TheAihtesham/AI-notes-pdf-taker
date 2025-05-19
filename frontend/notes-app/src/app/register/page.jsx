@@ -20,7 +20,7 @@ export default function RegisterPage() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/pdf/api/register", {
+      const res = await axios.post("https://ai-notes-pdf-taker.onrender.com/pdf/api/register", {
         email,
         password,
         username: name,
