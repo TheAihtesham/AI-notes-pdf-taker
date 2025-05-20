@@ -19,7 +19,7 @@ const Workspace = () => {
     const fetchPDF = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:5000/pdf/${id}`, {
+        const res = await fetch(`https://ai-notes-pdf-taker.onrender.com/pdf/${id}`, {
           headers: {
             'Authorization': `Bearer ${session.accessToken}`,
           },

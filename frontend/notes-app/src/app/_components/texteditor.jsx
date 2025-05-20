@@ -38,7 +38,7 @@ const Tiptap = ({ pdfId, userId }) => {
       }
 
       try {
-        const res = await fetch(`http://localhost:5000/pdf/note/get/${pdfId}`, {
+        const res = await fetch(`https://localhost:5000/pdf/note/get/${pdfId}`, {
           headers: {
             'Authorization': `Bearer ${session.accessToken}`
           }
@@ -69,7 +69,7 @@ const Tiptap = ({ pdfId, userId }) => {
     const saveNote = async () => {
       const content = editor.getJSON();
       try {
-         await fetch(`http://localhost:5000/pdf/note/save/${pdfId}`, {
+         await fetch(`https://localhost:5000/pdf/note/save/${pdfId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

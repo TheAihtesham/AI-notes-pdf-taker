@@ -36,7 +36,12 @@ const getNote = async (req, res) => {
         const note = await Note.findOne({ pdfId: id, user: userId });
         console.log('Fetched note:', note);
 
-        if (!note) return res.status(404).json({ message: 'No note found' });
+        if (!note) {
+            return res.status(200).json({
+              note: null,
+              message: 'No note yet for this PDF',
+            });
+          }
         res.status(200).json(note);
     } catch (err) {
         console.error('Error fetching note:', err.stack || err);
