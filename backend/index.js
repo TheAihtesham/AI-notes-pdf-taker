@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000;
 
 const allowedOrigins = [
   'https://ai-notes-pdf-taker.vercel.app',
-  'https://ai-notes-pdf-taker-fmrq.vercel.app',
+  'https://ai-notes-pdf-taker-3vzc.vercel.app',
 ];
 
 app.use(
