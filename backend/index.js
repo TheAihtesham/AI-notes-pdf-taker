@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cors({
-  origin: 'http://localhost:3000',  // ⚠️ Use your frontend URL here
+  origin: 'https://ai-notes-pdf-taker-fmrq.vercel.app',  // ⚠️ Use your frontend URL here
   methods: ['GET', 'POST'],
 }));
 
