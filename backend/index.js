@@ -10,8 +10,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-
 const allowedOrigins = [
+  'http://localhost:3000',
   'https://ai-notes-pdf-taker.vercel.app',
   'https://ai-notes-pdf-taker-3vzc.vercel.app',
 ];
@@ -19,27 +19,37 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
+      // allow requests with no origin (e.g. curl, Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        return callback(new Error('Not allowed by CORS'), false);
       }
     },
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],  // <-- explicitly allow Authorization header
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // explicitly allow HTTP methods
   })
 );
 
+// Optional: log incoming origin for debugging
+app.use((req, res, next) => {
+  console.log('Origin:', req.headers.origin);
+  next();
+});
 
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/pdf', pdfroutes);
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log('MongoDB connected');
-    
     app.listen(port, () => {
       console.log(`Server running at http://localhost:${port}`);
     });
@@ -47,5 +57,3 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch((err) => {
     console.error('MongoDB connection error:', err);
   });
-
-app.use('/pdf', pdfroutes);
