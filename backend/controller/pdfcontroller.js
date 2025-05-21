@@ -72,7 +72,7 @@ const uploadpdf = async (req, res) => {
       return res.status(400).json({ error: 'Only PDF files are allowed' });
     }
 
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const baseUrl = `https://${req.get('host')}`;
     const relativePath = path.join('uploads', file.filename).replace(/\\/g, '/');
     const fileUrl = `${baseUrl}/${relativePath}`;
 
