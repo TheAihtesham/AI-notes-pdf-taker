@@ -17,7 +17,7 @@ const pdfSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /^(http|https):\/\/[^ "]+$/.test(v);
+        return /^https:\/\/[^ "]+$/.test(v);
       },
       message: props => `${props.value} is not a valid URL!`
     }

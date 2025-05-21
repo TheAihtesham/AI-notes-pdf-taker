@@ -19,7 +19,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (e.g. curl, Postman)
+     
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
@@ -28,12 +28,12 @@ app.use(
       }
     },
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],  // <-- explicitly allow Authorization header
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // explicitly allow HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'],  
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
   })
 );
 
-// Optional: log incoming origin for debugging
+
 app.use((req, res, next) => {
   console.log('Origin:', req.headers.origin);
   next();
