@@ -17,17 +17,11 @@ export default function UploadPDF() {
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "loading") return;
-
-    if (!session) {
-      const trialStart = localStorage.getItem('pdfsync_trial_start');
-
-      if (!trialStart) {
-        router.push('/login');
-      }
-
+    if (status === "unauthenticated") {
+      router.push("/login");
     }
-  }, [session, status, router]);
+
+  }, [session, status]);
 
   if (status === "loading") {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
