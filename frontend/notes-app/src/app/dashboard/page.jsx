@@ -75,7 +75,7 @@ export default function UploadPDF() {
         <Button
           onClick={handleLogout}
           variant="outline"
-          className="transition duration-200 hover:bg-red-100 hover:text-red-600 hover:border-red-300"
+          className="transition duration-200 cursor-pointer hover:bg-red-100 hover:text-red-600 hover:border-red-300"
         >
           Logout
         </Button>
@@ -99,7 +99,7 @@ export default function UploadPDF() {
               <Button
                 onClick={handleUpload}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 text-sm sm:text-base transition duration-200 hover:bg-blue-100 hover:text-blue-700"
+                className="w-full flex cursor-pointer items-center justify-center gap-2 text-sm sm:text-base transition duration-200 hover:bg-blue-100 hover:text-blue-700"
               >
                 {isLoading ? (
                   <>

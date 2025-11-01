@@ -36,7 +36,7 @@ export default function LoginPage() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form onSubmit={handleLogin} className="bg-white p-10 rounded-lg shadow-xl w-96 max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login</h2>
-        <Link href="/" className="text-blue-500 text-sm hover:text-blue-600 mb-4 block text-center">
+        <Link href="/" className="text-blue-500 text-sm hover:text-blue-600 mb-4 block cursor-pointer text-center">
           ← Back to Home
         </Link>
 
@@ -88,14 +88,14 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+          className="w-full bg-blue-500 cursor-pointer text-white p-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
 
         <p className="text-center mt-6 text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link href="/register" className="text-blue-500 hover:underline">
+          <Link href="/register" className="text-blue-500 cursor-pointer hover:underline">
             Register
           </Link>
         </p>
