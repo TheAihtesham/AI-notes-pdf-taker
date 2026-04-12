@@ -7,7 +7,7 @@ import GetPdfList from '../sidebar/page';
 import { toast } from 'sonner';
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Workspace() {
   const [file, setFile] = useState(null);
@@ -86,12 +86,12 @@ export default function Workspace() {
                 {session?.user?.name || 'User'}
             </p>
           </div>
-          <button
-            onClick={() => signOut({ callbackUrl: "/" })}
+          <Link
+            href='/login'
             className="p-2 hover:bg-red-50 rounded-lg transition-colors group"
           >
             <LogOut className="w-4 h-4 text-slate-400 group-hover:text-red-500" />
-          </button>
+          </Link>
         </div>
       </header>
 

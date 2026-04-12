@@ -48,10 +48,10 @@ export default function HeroSection() {
           </Link>
           
           <Link
-            href="#how-it-works"
+            href="/demo"
             className="inline-flex items-center justify-center px-8 py-4 font-semibold text-slate-700 transition-all duration-200 bg-transparent border border-slate-200 rounded-full hover:bg-slate-50"
           >
-            Watch Demo
+            Try Demo
           </Link>
         </div>
 
