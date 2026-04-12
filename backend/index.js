@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const demoRouter = require('./routes/demo')
 const pdfroutes = require('./routes/pdfroutes');
 
 dotenv.config();
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/pdf', pdfroutes);
+app.use('/demo', demoRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)

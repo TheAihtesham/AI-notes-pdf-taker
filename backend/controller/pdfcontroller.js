@@ -42,7 +42,6 @@ const askQuestionFromPdf = async (req, res) => {
         body: JSON.stringify(payload),
       }
     );
-    
 
     const data = await response.json();
 
